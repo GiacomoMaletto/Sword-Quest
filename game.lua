@@ -151,7 +151,7 @@ game.image["sword"]["rest"] = {
 }
 game.image["prize"] = {}
 game.image["prize"]["rest"] = {
-  w = {love.graphics.newImage("img/prize.png")}
+  w = {love.graphics.newImage("img/Prize.png")}
 }
 game.image["gianni"] = {}
 game.image["gianni"]["rest"] = {
