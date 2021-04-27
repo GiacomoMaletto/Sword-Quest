@@ -760,6 +760,7 @@ function game.update(game, dt, main, input)
       game.cutscene = false
       game.camera.fix = game.char
       game.maharajah.x = -1000
+      game.maharajah.target = nil
       game.char.x = 1000
       game.char.y = 700
       game.char.dir = "s"
@@ -929,6 +930,7 @@ function game.update(game, dt, main, input)
         end
       end
       game.janbon.x = -1000
+      game.janbon.target = nil
       game.state = "initThird"
       game.cutscene = false
       game.camera.fix = game.char
@@ -958,20 +960,21 @@ function game.update(game, dt, main, input)
       game.dialogue[4] = {actor="char", text="Bertha,  the  situation  is  desperate."}
       game.dialogue[5] = {actor="smith", text="As  always."}
       game.dialogue[6] = {actor="char", text="I'm  serious.\nThe  sword  is  sinking  deeper  and  deeper\nand  it's  gonna  be  impossible  to  pull  it  out."}
-      game.dialogue[7] = {actor="smith", text="What  difference  does  that  make?\nOur  society  is  rotten  to  the  core"}
+      game.dialogue[7] = {actor="smith", text="What  difference  does  that  make?\nOur  society  is  rotten  to  the  core."}
       game.dialogue[8] = {actor="char", text="But  Bertha...  You  could  be  the  difference!"}
       game.dialogue[8] = {actor="char", text="You  have  to  try  to  pull  it."}
       game.dialogue[9] = {actor="smith", text="Ours  is  a  nation  which  runs  on  mediocrity."}
       game.dialogue[10] = {actor="smith", text="I  mean,  look  at  the  \nRoyal  Bureau  For  Excalibur  Extraction  Protocol.\nThat's  completely  ridiculous."}
-      game.dialogue[11] = {actor="smith", text="This  overwhelming  bureaucracy.\nThe  people  working  under  there\n"}
+      game.dialogue[11] = {actor="smith", text="This  overwhelming  bureaucracy.\nTake the  people  working  under  there\n"}
       game.dialogue[12] = {actor="smith", text="Don't  tell  me  that  they  have  not  dreamed  the  dream\nand  attempted  to  pull  out  the  sword"}
       game.dialogue[13] = {actor="smith", text="for  they  have,  and  they  have  failed."}
-      game.dialogue[14] = {actor="smith", text="And  yet,  they're  the  very  ones\nwho  checks  who  is  fit  and  unfit"}
+      game.dialogue[14] = {actor="smith", text="And  yet,  they're  the  very  ones\nwho  check  who  is  fit  and  unfit"}
       game.dialogue[15] = {actor="smith", text="to  try  and  become  the  wielder\nof  Excalibur,  which  should  be  a  right  of  everyone."}
       game.dialogue[16] = {actor="smith", text="Do  you  think  they'd  let  a  woman?\nI  have  no  chance."}
       game.dialogue[17] = {actor="char", text="...I  work  at  RBEEP.  I  can  help  you  go\nthrough  the  process."}
       game.dialogue[18] = {actor="smith", text="...I  see;  sorry  for  what  i've  just  said.\nOk,  we'll  try."}
       game.dialogue[19] = {actor="smith", text="I  mean,  I  don't  think  I'm\n truly  our  ruler.  But  I  can  try"}
+      game.dialogue[20] = {actor="char", text="I'm  immensely  grateful.\nI'll  go  to  the  RBEEP  center\nand  I'll  get  the  paperwork  done,  somehow."}
     end
   end
   
@@ -1050,6 +1053,7 @@ function game.update(game, dt, main, input)
       game.blackout = nil
       
       game.smith.x = -1000
+      game.smith.target = nil
       game.state = "initThird"
       game.cutscene = true
       game.camera.fix = game.sword
@@ -1163,15 +1167,6 @@ function game.draw(game)
   love.graphics.draw(game.image.wall, zerox, zeroy)
   if not game.inside then love.graphics.draw(game.image.wall2, zerox, zeroy) end
 
-  if game.char.x > 550 then
-    love.graphics.draw(game.image.roofNoble, zerox, zeroy)
-  end
-  if game.char.y > 610 then
-    love.graphics.draw(game.image.roofBuro, zerox, zeroy)
-  end
-
-
-
   local sortTable = {}
   for ie, e in ipairs(game.entity) do
     sortTable[#sortTable+1] = {i=ie, y=e.y+e.offset}
@@ -1201,6 +1196,13 @@ function game.draw(game)
       if dir=="s" then love.graphics.draw(img, sx, sy, 0, size, size, img:getWidth()/2, 0) end
       if dir=="d" then love.graphics.draw(img, sx, sy, 0, size, size, 0, img:getHeight()/2) end
     end
+  end
+
+  if game.char.x > 550 then
+    love.graphics.draw(game.image.roofNoble, zerox, zeroy)
+  end
+  if game.char.y > 610 then
+    love.graphics.draw(game.image.roofBuro, zerox, zeroy)
   end
 
   --do

@@ -17,7 +17,7 @@ function ending.update(ending, dt, main, input)
         table.remove(ending.text, 1)
         ending.text.state = 1
         if #ending.text == 0 then
-          ending.state = "still"
+          ending.state = "gif"
           gif = love.graphics.newVideo("img/ending/gif.ogv", {false})
           gif:play()
         end
