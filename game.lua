@@ -138,7 +138,8 @@ game.image["smith"]["walk"] = {
 }
 game.image.map = love.graphics.newImage("img/map/Map01.png")
 game.image.roofNoble = love.graphics.newImage("img/map/Roof01.png")
-game.image.roofBuro = love.graphics.newImage("img/map/Roof02.png")
+game.image.burebasso = love.graphics.newImage("img/map/burebasso.png")
+game.image.burealto = love.graphics.newImage("img/map/burealto.png")
 game.image["sword"] = {}
 game.image["sword"]["rest"] = {
   w = {
@@ -1167,6 +1168,10 @@ function game.draw(game)
   love.graphics.draw(game.image.wall, zerox, zeroy)
   if not game.inside then love.graphics.draw(game.image.wall2, zerox, zeroy) end
 
+  if game.char.y > 610 then
+    love.graphics.draw(game.image.burebasso, zerox, zeroy)
+  end
+
   local sortTable = {}
   for ie, e in ipairs(game.entity) do
     sortTable[#sortTable+1] = {i=ie, y=e.y+e.offset}
@@ -1202,7 +1207,7 @@ function game.draw(game)
     love.graphics.draw(game.image.roofNoble, zerox, zeroy)
   end
   if game.char.y > 610 then
-    love.graphics.draw(game.image.roofBuro, zerox, zeroy)
+    love.graphics.draw(game.image.burealto, zerox, zeroy)
   end
 
   --do
